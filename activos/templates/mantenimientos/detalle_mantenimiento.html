@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <main class="container">
+        <div class="row">
+            <section class="col-md-8 offset-md-2 mt-5 ">
+    
+                <form method="POST" enctype="multipart/form-data" class="card card-body">
+
+                    <h1 class="text-center">Actualiza actividad de mantenimiento</h1>
+                    <h4 class="text-center">{{mantenimiento}}</h4>
+                
+                    {{error}}
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit" class="btn btn-success">
+                        Actualiza 
+                    </button>
+                </form>
+
+                <form action="{% url 'completa_mantenimiento' mantenimiento.id %}" class="card card-body" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-warning">
+                        Completa
+                    </button>
+                </form>
+            
+                <form action="{% url 'borra_mantenimiento' mantenimiento.id %}" class="card card-body" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">
+                        Borra
+                    </button>
+                </form>
+    
+            </section>
+        </div>
+    </main>
+
+{% endblock %}

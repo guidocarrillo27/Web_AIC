@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>creación de nuevas locaciones del proyecto </h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+    <button>
+        Nuevo
+    </button>
+
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div>
+    <h1 class="text-center">{{maquina}}</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+
+      <div class="col-5">
+            <form method="POST" enctype="multipart/form-data" class="card card-body">
+                <fieldset disabled>
+                    <h3 class="text-center">Detalle de la máquina</h3>
+                    {% csrf_token %}
+                    {{form.as_p}}                  
+                </fieldset>
+                {% csrf_token %}
+                {{form1.as_p}}
+                {{error}}
+                {% if activa_guarda == True %}
+                    <button class="btn btn-success">Guarda</button>
+                {% endif %}
+            </form>
+      </div>
+
+      <div class="col-4">
+            <form action="" class="card card-body">
+                <h3 class="text-center">Imagen de la máquina</h3>
+                <img src="/media/{{maquina.foto}}" style="max-width:90%;max-height:100%;" alt="">                          
+            </form>
+      </div>
+
+        <div class="col-3">
+            <div class="card mt-2">
+                <a href="{% url 'actualiza_maquina' maquina.id %}" class="btn btn-success">Actualizar</a>
+            </div>
+            <div class="card mt-2">    
+                <a class="btn btn-dark" href="{% url 'detalle_subareas' maquina.area_id %}">Ir al Area</a>
+            </div>
+                <div class="card mt-2">
+                <a class="btn btn-primary" href="{% url 'mantenimiento_maquina_pendiente' maquina.id %}">Mantenimientos</a>
+            </div>
+            <div class="card mt-2">
+                <a class="btn btn-primary" href="{% url 'nueva_parte' maquina.id %}">Nueva parte</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col mt-5">
+            {{partes}}
+            {% for parte in partes %}
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5>{{parte.nombre}}</h5>
+                    <h6>CODIGO PARTE:{{parte.codigo_parte}}</h6>
+                    <h7>{{parte.descripción}}</h7>
+                    <h7><a href="/media/{{parte.anexo1}}">Anexo1</a></h7>
+                    <h7><a href="/media/{{parte.anexo2}}">Anexo2</a></h7>
+                    <div class="d-grid gap-2 d-md-block">
+                        <a class="btn btn-dark" href="#">Detalles</a>
+                    </div>   
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+{% endblock %}

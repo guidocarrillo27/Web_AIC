@@ -1,0 +1,42 @@
+{%extends 'base.html' %}
+{%block content %}
+
+<div class="container">
+    <div class="row">
+        <section class="col-3 mt-3">
+            <div class="alert alert-secondary" role="alert">
+                <h3 class="text-center">Area:</h3>
+            </div>
+        </section>
+        <section class="col-6 mt-3">
+            <div class="alert alert-success" role="alert">
+                <h3 class="text-center">{{subarea}}</h3>
+            </div>
+        </section>
+        <section class="col-3 mt-3">
+            <div>
+                <a class="btn btn-success btn-lg" href="{% url 'nueva_maquina' subarea.id %}">Crear Nueva Máquina</a>
+            </div>
+        </section>
+           
+        {% for maquina in maquinas %}
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5>{{maquina.nombre}}</h5>
+                <h6>CODIGO MÁQUINA:{{maquina.codigo}}</h6>
+                <div class="d-grid gap-2 d-md-block">
+                    <a class="btn btn-dark" href="{% url 'detalle_maquina' maquina.id %}">  Detalles</a>
+                    <a class="btn btn-primary" href="{% url 'mantenimiento_maquina_pendiente' maquina.id %}">Mantenimientos</a>
+                </div>   
+            </div>
+        </div>
+        {% endfor %}
+    
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+

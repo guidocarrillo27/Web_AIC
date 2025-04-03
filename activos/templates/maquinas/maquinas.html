@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <section class="col mt-3">
+            <div class="alert alert-secondary" role="alert">
+                <h3 class="text-center">Maquinas del campamento AIC</h3>
+            </div>
+        </section>
+           
+        {% for maquina in maquinas %}
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5>{{maquina.codigo}} : {{maquina.nombre}}</h5>
+                <small>CODIGO: {{maquina.codigo}}</small>
+                <div class="d-grid gap-2 d-md-block">
+                    <a class="btn btn-primary" href="{% url 'mantenimiento_maquina_pendiente' maquina.id %}">Mantenimientos</a>
+                    <a class="btn btn-dark" href="{% url 'detalle_maquina' maquina.id %}">  Detalles</a>
+                </div>   
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

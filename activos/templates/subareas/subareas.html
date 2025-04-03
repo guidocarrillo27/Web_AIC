@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <section class="col mt-3">
+            <div class="alert alert-secondary" role="alert">
+                <h3 class="text-center">Todas las Areas</h3>
+            </div>
+        </section>
+
+        {% for sa in subareas%}
+        <article class="card"> 
+            <a href="{%url 'detalle_subareas' sa.id %}"><h4>{{sa.cod_subArea}} - {{sa.nombre}}</h4></a>
+            <p>Area:{{sa.subarea.nombre}}</p>
+        </article>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+

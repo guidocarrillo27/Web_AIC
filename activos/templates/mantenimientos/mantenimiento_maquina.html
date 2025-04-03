@@ -1,0 +1,49 @@
+{%extends 'base.html' %}
+{%block content %}
+
+
+<div class="container">
+    <div class="row">
+        <section class="col-9 mt-3">
+            <div class="alert alert-secondary" role="alert">
+                <h4 class="text-center">Bitácora de actividades de mantenimiento: {{maquina}}</h4>
+            </div>
+        </section>
+        <section class="col-3 mt-3">
+            <div class="card">
+                <a class="btn btn-success" href="{% url 'crear_mantenimiento' maquina.id %}">Crear Actividad Mantenimiento</a>
+            </div>
+            <div class="card">
+                <a class="btn btn-dark" href="{% url 'detalle_maquina' maquina.id %}">Detalle máquina</a>
+            </div>
+        </section>
+    </div>
+</div>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'mantenimiento_maquina_pendiente' maquina.id %}">Planificadas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'mantenimiento_maquina_completo' maquina.id %}">Ejecutadas</a>
+        </li>
+    </ul>
+ 
+    <ul class="card">
+        {% for mant in mantenimientos %}
+            <div class="card mt-2">
+                    <h6>FECHA PLAN: {{mant.fecha_planificada|date:'M j Y'}}</h6>
+                    <h6>FECHA EJECUCIÓN: {{mant.fecha_ejecutada|date:'M j Y'}}</h6>
+                    <h6>TIPO:{{mant.tipo}}</h6>
+                    <a href="{% url 'ver_mantenimiento' mant.id %}"><h4>{{mant.nombre}}</h4></a>
+                    <small>{{mant.descripcion}}</small>
+                    <div>
+                        <a class="btn btn-primary" href="{% url 'detalle_mantenimiento' mant.id %}">Actualizar actividad</a>
+                    </div>
+            </div>
+        {% endfor %}
+    </ul> 
+   
+
+{% endblock %}
+

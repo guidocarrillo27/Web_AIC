@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<main class="container">
+    <div class="row">
+        <section class="col-md-6 offset-md-3 mt-5 ">
+
+            <form method="POST" enctype="multipart/form-data" class="card card-body">
+                <h1 class="text-center">{{maquina}}</h1>
+                <h3 class="text-center">Ingreso de actividad de mantenimiento</h3>
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-success">
+                    Guardar
+                </button>
+            </form>
+
+        </section>
+    </div>
+</main>
+
+{% endblock %}
