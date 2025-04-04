@@ -34,7 +34,6 @@
             <div class="card mt-2">
                     <h6>FECHA PLAN: {{mant.fecha_planificada|date:'M j Y'}}</h6>
                     <h6>FECHA EJECUCIÓN: {{mant.fecha_ejecutada|date:'M j Y'}}</h6>
-                    <h6>TIPO:{{mant.tipo}}</h6>
                     <a href="{% url 'ver_mantenimiento' mant.id %}"><h4>{{mant.nombre}}</h4></a>
                     <small>{{mant.descripcion}}</small>
                     <div>
